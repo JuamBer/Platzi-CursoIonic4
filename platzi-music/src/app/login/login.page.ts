@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { LoginForm } from './../../modules/LoginForm';
 
 @Component({
   selector: 'app-login',
@@ -51,8 +52,8 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  loginUser(algo: any){
-
+  loginUser(credentials: LoginForm){
+    console.log(credentials)
   }
 
 }

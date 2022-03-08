@@ -9,7 +9,8 @@
   </ion-item>
   <div class="validation-error">
     <div *ngFor="let validation of validationMessages.email">
-      <div *ngIf="loginForm.get('email').hasError(validation.type) && loginForm.get('email').dirty">
+      <div
+        *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
         {{ validation.message }}
       </div>
     </div>
@@ -20,10 +21,18 @@
   </ion-item>
   <div class="validation-error">
     <div *ngFor="let validation of validationMessages.password">
-      <div *ngIf="loginForm.get('password').hasError(validation.type) && loginForm.get('password').dirty">
+      <div
+        *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('email').touched)">
         {{ validation.message }}
       </div>
     </div>
   </div>
+  <ion-button class="ion-text-center" expand="full" shape="round" color="success"
+    [disabled]="!loginForm.valid"
+    type="submit"
+  >Login</ion-button>
 </form>
 </ion-content>
+<ion-footer>
+  <ion-button class="ion-text-center" expand="full" fill="outline" shape="round" color="success">Registrar</ion-button>
+</ion-footer>
