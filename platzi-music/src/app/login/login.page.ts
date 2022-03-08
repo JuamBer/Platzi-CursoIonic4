@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { LoginForm } from './../../modules/LoginForm';
+import { NavController } from '@ionic/angular';
+import { CredentialsLogin } from '../../modules/CredentialsLogin';
+import { AuthenticateService } from '../services/authenticate.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -33,9 +36,13 @@ export class LoginPage implements OnInit {
       }
     ]
   }
+  public errorMessage: string = "";
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authenticateService: AuthenticateService,
+    private navCtrl: NavController,
+    private storage: Storage
   ) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl("", Validators.compose([
@@ -52,8 +59,18 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  loginUser(credentials: LoginForm){
-    console.log(credentials)
+  loginUser(credentials: CredentialsLogin){
+    console.log(credentials);
+    this.authenticateService.loginUser(credentials).then( res => {
+      this.errorMessage= "";
+      this.storage.create();
+      this.storage.set('isUserLoggedIn', true);
+      this.navCtrl.navigateForward('/home')
+    }).catch(
+      error => {
+        this.errorMessage = error;
+      }
+    )
   }
 
 }
