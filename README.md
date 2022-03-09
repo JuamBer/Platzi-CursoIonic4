@@ -21,4 +21,5 @@ Material realizado en el curso de "Ionic 4" de [Platzi]()
 
 ## Certificación 🎓
 
-![Certificación]()
+Aún me encuentro realizando el curso.
+
