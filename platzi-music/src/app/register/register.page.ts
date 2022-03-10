@@ -1,20 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-import { CredentialsLogin } from '../../modules/CredentialsLogin';
+import { CredentialsRegister } from 'src/modules/CredentialsRegister';
 import { AuthenticateService } from '../services/authenticate.service';
 import { Storage } from '@ionic/storage';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class RegisterPage implements OnInit {
 
   public srcLogo: string = "assets/img/logo.png";
-  public loginForm: FormGroup;
+  public registerForm: FormGroup;
   public validationMessages = {
+    name: [
+      {
+        type: "required",
+        message: "El name es requerido"
+      },
+      {
+        type: "minlength",
+        message: "La longitud mínima para el nombre es de 3 caracteres"
+      }
+    ],
     email: [
       {
         type: "required",
@@ -44,7 +54,11 @@ export class LoginPage implements OnInit {
     private navCtrl: NavController,
     private storage: Storage
   ) {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
+      name: new FormControl("", Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+      ])),
       email: new FormControl("", Validators.compose([
         Validators.required,
         Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"),
@@ -59,22 +73,13 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  loginUser(credentials: CredentialsLogin){
-    console.log(credentials);
-    this.authenticateService.loginUser(credentials).then( res => {
-      this.errorMessage= "";
-      this.storage.create();
-      this.storage.set('isUserLoggedIn', true);
-      this.navCtrl.navigateForward('/home')
-    }).catch(
-      error => {
-        this.errorMessage = error;
-      }
-    )
+  goToLogin(){
+    this.navCtrl.navigateBack('/login');
   }
 
-  goToRegister(){
-    this.navCtrl.navigateForward('/register');
+  registerUser(credentials: CredentialsRegister){
+    this.authenticateService.registerUser(credentials).then(()=>{
+      this.navCtrl.navigateForward('/login');
+    })
   }
-
 }
