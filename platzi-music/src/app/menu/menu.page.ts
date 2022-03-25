@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage-angular';
   templateUrl: './menu.page.html',
   styleUrls: ['./menu.page.scss'],
 })
-export class MenuPage implements OnInit {
+export class MenuPage {
 
   constructor(
     private menuController: MenuController,
@@ -15,10 +15,9 @@ export class MenuPage implements OnInit {
     private storage: Storage
   ) { }
 
-  ngOnInit() {
-  }
   goTo(url: string){
     this.navCtrl.navigateRoot('menu/'+url);
+    this.menuController.close();
   }
   closeMenu(){
     this.menuController.close()

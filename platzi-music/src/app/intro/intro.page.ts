@@ -8,11 +8,11 @@ import { Storage } from '@ionic/storage-angular';
   templateUrl: './intro.page.html',
   styleUrls: ['./intro.page.scss'],
 })
-export class IntroPage implements OnInit {
+export class IntroPage {
 
   public srcLogo: string = 'assets/img/logo.png';
   public altLogo: string = 'PlatziMusicLogo';
-  public slideOpt: any = {
+  public slideOpts: any = {
     initialSlide: 0,
     slidesPerView: 1,
     centerSlides: true,
@@ -48,13 +48,10 @@ export class IntroPage implements OnInit {
     private storage: Storage
   ) { }
 
-  ngOnInit() {
-  }
-
   finish(){
     this.storage.create();
     this.storage.set('isIntroShowed', true);
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/login');
   }
 
 }

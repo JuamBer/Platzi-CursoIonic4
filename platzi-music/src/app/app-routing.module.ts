@@ -35,10 +35,6 @@ const routes: Routes = [
     path: 'album-modal',
     loadChildren: () => import('./album-modal/album-modal.module').then( m => m.AlbumModalPageModule)
   },
-  {
-    path: 'settings',
-    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
-  },
 ];
 
 @NgModule({
