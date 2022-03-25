@@ -36,10 +36,33 @@
 </ion-content>
 
 <ion-footer>
-  <ion-text color="danger" *ngIf="!song.name">
-    <h2>Aqui Aparecerá nuestra Canción</h2>
-  </ion-text>
-  <ion-text color="primary" *ngIf="song.name">
-    <h2>{{song.name}}</h2>
-  </ion-text>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-start">
+        0:00
+      </ion-col>
+      <ion-col class="ion-text-end">
+        0:00
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-progress-bar [value]="0.5"></ion-progress-bar>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1">
+        <ion-icon name="heart"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-text size="10">
+          {{song.name || 'Aún No Has Seleccionado La Cación'}}
+        </ion-text>
+      </ion-col>
+      <ion-col size="1" *ngIf="!song.playing">
+        <ion-icon (click)="play()" name="play"></ion-icon>
+      </ion-col>
+      <ion-col size="1" *ngIf="song.playing">
+        <ion-icon (click)="pause()" name="pause"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-footer>

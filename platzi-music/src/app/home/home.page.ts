@@ -21,7 +21,7 @@ export class HomePage {
   public songs: any[] = [];
   public albums: any[] = [];
   public song = {
-
+    playing: false
   }
   constructor(
     private musicService: APIService,
@@ -58,6 +58,14 @@ export class HomePage {
     });
 
     return await modal.present();
+  }
+
+  play(){
+    this.song.playing = true;
+  }
+
+  pause(){
+    this.song.playing = false;
   }
 
 }
