@@ -17,6 +17,9 @@ export class MenuPage implements OnInit {
 
   ngOnInit() {
   }
+  goTo(url: string){
+    this.navCtrl.navigateRoot('menu/'+url);
+  }
   closeMenu(){
     this.menuController.close()
   }
