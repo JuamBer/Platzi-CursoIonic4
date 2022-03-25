@@ -1,12 +1,32 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>settings</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-avatar (click)="takePhoto()">
-    <img [src]="userImage" *ngIf="!photo" alt="">
-    <img [src]="photo" *ngIf="photo" alt="">
-  </ion-avatar>
+  <div class="succes-background">
+    <ion-avatar (click)="takePhoto()">
+      <img [src]="userImage" *ngIf="!photo" alt="">
+      <img [src]="photo" *ngIf="photo" alt="">
+    </ion-avatar>
+
+    <h1>Juan Sáes García</h1>
+    <h2>contacto@juamber.com</h2>
+    <ion-grid>
+      <ion-row align-items-center class="row-header">
+        <ion-col>140</ion-col>
+        <ion-col>2k</ion-col>
+        <ion-col>500</ion-col>
+      </ion-row>
+      <ion-row align-items-center>
+        <ion-col>Artistas</ion-col>
+        <ion-col>Seguidores</ion-col>
+        <ion-col>Canciones</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
