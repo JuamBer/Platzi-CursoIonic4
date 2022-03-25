@@ -34,7 +34,7 @@ const routes: Routes = [
   {
     path: 'album-modal',
     loadChildren: () => import('./album-modal/album-modal.module').then( m => m.AlbumModalPageModule)
-  },
+  }
 ];
 
 @NgModule({
