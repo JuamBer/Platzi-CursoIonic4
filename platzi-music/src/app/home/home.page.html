@@ -9,7 +9,7 @@
   <h1>Artistas</h1>
   <ion-slides [options]="slideOps" *ngIf="artists.length">
     <ion-slide *ngFor="let artist of artists">
-      <ion-avatar (click)="showSongs(artist)">
+      <ion-avatar (click)="showArtist(artist)">
         <img [src]="artist.images[0].url" />
         <span>{{ artist.name }}</span>
       </ion-avatar>
@@ -17,7 +17,7 @@
   </ion-slides>
   <h1>Albums</h1>
   <ion-slides [options]="slideOps" *ngIf="albums.length">
-    <ion-slide *ngFor="let album of albums">
+    <ion-slide *ngFor="let album of albums" (click)="showAlbum(album)">
       <ion-avatar class="square-avatar">
         <img [src]="album.images[0].url" />
         <span>{{ album.name }}</span>
@@ -26,7 +26,7 @@
   </ion-slides>
   <h1>Canciones</h1>
   <ion-slides [options]="slideOps" *ngIf="songs.length">
-    <ion-slide *ngFor="let song of songs">
+    <ion-slide *ngFor="let song of songs" (click)="playSong(song)">
       <ion-avatar class="square-avatar">
         <img [src]="song.images[0].url" />
         <span>{{ song.name }}</span>
@@ -35,18 +35,18 @@
   </ion-slides>
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="song">
   <ion-grid>
     <ion-row>
       <ion-col class="ion-text-start">
-        0:00
+        {{ parseTime(currentSong.currentTime) || '0:00' }}
       </ion-col>
       <ion-col class="ion-text-end">
-        0:00
+        {{ parseTime(currentSong.duration) || '0:00' }}
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-progress-bar [value]="0.5"></ion-progress-bar>
+  <ion-progress-bar [value]="time"></ion-progress-bar>
   <ion-grid>
     <ion-row>
       <ion-col size="1">

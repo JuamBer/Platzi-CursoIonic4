@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-
-import { SongsModalPage } from './songs-modal.page';
+import { AlbumModalPage } from './album-modal.page';
 
 @NgModule({
   imports: [
@@ -13,6 +12,6 @@ import { SongsModalPage } from './songs-modal.page';
     FormsModule,
     IonicModule,
   ],
-  declarations: [SongsModalPage]
+  declarations: [AlbumModalPage]
 })
-export class SongsModalPageModule {}
+export class AlbumModalPageModule {}
