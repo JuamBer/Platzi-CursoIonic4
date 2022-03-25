@@ -20,7 +20,9 @@ export class HomePage {
   public artists: any[] = [];
   public songs: any[] = [];
   public albums: any[] = [];
+  public song = {
 
+  }
   constructor(
     private musicService: APIService,
     private modalController: ModalController
@@ -50,6 +52,11 @@ export class HomePage {
         artist: artist.name
       }
     });
+
+    modal.onDidDismiss().then(dataReturned => {
+      this.song = dataReturned.data;
+    });
+
     return await modal.present();
   }
 
