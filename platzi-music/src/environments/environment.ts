@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   API_URL: "https://platzi-music-api.herokuapp.com",
   clientId: "",
-  clientSecret: ""
+  clientSecret: "",
+  mapsKeyApi: "",
 };
 
 /*
