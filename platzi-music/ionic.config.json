@@ -1,5 +1,8 @@
 {
   "name": "platzi-music",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }
